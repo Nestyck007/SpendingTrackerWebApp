@@ -1,9 +1,15 @@
 # SpendingTrackerWebApp - Progressive Web App
+# Version 1.1.0 (2026-01-09)
+
+## What's New
+- Major update: Categories now support subcategories for more detailed spending tracking.
+- Redesigned "Add Spending" form to select both category and subcategory.
+- Removed keyboard shortcuts for tab switching (1,2,3,4).
 
 A modern spending tracker PWA that works on iPhone, Android, and web browsers. Install directly on your home screen from Safari.
 
 ## Features
-- ✅ Add and track spending with categories
+- ✅ Add and track spending with categories and subcategories
 - ✅ View statistics with charts (pie and bar charts)
 - ✅ Works offline thanks to service worker
 - ✅ Installable on iPhone home screen

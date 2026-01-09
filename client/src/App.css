@@ -3,9 +3,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: radial-gradient(circle at 10% 10%, rgba(138, 43, 226, 0.15), transparent 40%),
-              radial-gradient(circle at 90% 90%, rgba(34, 139, 34, 0.15), transparent 40%),
-              linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  background: 
+    radial-gradient(circle at 10% 10%, rgba(186, 85, 211, 0.18), transparent 40%), /* light purple */
+    radial-gradient(circle at 90% 90%, rgba(255, 140, 0, 0.18), transparent 40%), /* orange */
+    linear-gradient(135deg, #a18cd1 0%, #fbc2eb 50%, #fcb69f 100%); /* purple to orange modern */
   position: relative;
   overflow: hidden;
 }
