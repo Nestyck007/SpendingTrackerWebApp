@@ -18,21 +18,6 @@ export default function App() {
         console.log('Service worker registration failed (may not be available in development)')
       })
     }
-
-    // Keyboard shortcuts: 1=Home, 2=Add, 3=Stats, 4=Settings
-    const handleKeyPress = (e: KeyboardEvent) => {
-      const target = e.target as HTMLElement;
-      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
-        return;
-      }
-      if (e.key === '1') setView('home')
-      if (e.key === '2') setView('add')
-      if (e.key === '3') setView('stats')
-      if (e.key === '4') setView('settings')
-    }
-
-    window.addEventListener('keydown', handleKeyPress)
-    return () => window.removeEventListener('keydown', handleKeyPress)
   }, [])
 
   const handleSpendingAdded = () => {
