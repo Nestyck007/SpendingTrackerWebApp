@@ -1,0 +1,40 @@
+{
+  "name": "spending-tracker-pwa",
+  "version": "1.0.0",
+  "description": "Progressive Web App for spending tracking with PWA features for iPhone home screen installation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "node server/index.js",
+    "dev:client": "cd client && vite",
+    "build": "cd client && vite build",
+    "preview": "cd client && vite preview",
+    "start": "npm run dev"
+  },
+  "keywords": [
+    "spending",
+    "tracker",
+    "pwa",
+    "progressive-web-app"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "vite": "^5.0.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^5.3.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "chart.js": "^4.4.0",
+    "react-chartjs-2": "^5.2.0"
+  }
+}
