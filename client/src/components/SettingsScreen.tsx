@@ -25,14 +25,19 @@ export default function SettingsScreen() {
         {showAbout && (
           <div className="about-content">
             <p><strong>Spending Tracker PWA</strong></p>
-            <p>Version 1.0.0</p>
-            <p>A modern progressive web app for tracking your spending across categories.</p>
+            <p>Version 1.1.0</p>
+            <p>A modern progressive web app for tracking your spending, budgets, and revenues with full offline support.</p>
             <ul>
               <li>📱 Works on iPhone, Android, and desktop</li>
               <li>📵 Works offline with local storage</li>
               <li>🏠 Installable on home screen</li>
               <li>💾 Auto-saves all data</li>
               <li>🇷🇴 Supports RON currency</li>
+              <li>📊 Real-time budget tracking per category</li>
+              <li>💰 Add, edit, and delete budgets</li>
+              <li>💵 Revenue tracking by type (Salary, Bonus, etc.)</li>
+              <li>⚡ Instant stats and balance calculation</li>
+              <li>🔒 All features work offline and sync instantly</li>
             </ul>
             <p className="version-info">Built with React, Express, and TypeScript</p>
           </div>

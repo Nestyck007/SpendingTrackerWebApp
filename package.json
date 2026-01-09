@@ -1,6 +1,6 @@
 {
   "name": "spending-tracker-pwa",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Progressive Web App for spending tracking with PWA features for iPhone home screen installation",
   "private": true,
   "type": "module",
