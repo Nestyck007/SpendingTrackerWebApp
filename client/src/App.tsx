@@ -5,9 +5,10 @@ import AddSpending from './components/AddSpending'
 import StatsScreen from './components/StatsScreen'
 import SettingsScreen from './components/SettingsScreen'
 import RecurringTransactionsScreen from './components/RecurringTransactionsScreen'
+import InfoScreen from './components/InfoScreen'
 import DebugPanel from './components/DebugPanel'
 
-type ViewType = 'home' | 'add' | 'stats' | 'recurring' | 'settings'
+type ViewType = 'home' | 'add' | 'stats' | 'recurring' | 'settings' | 'info'
 
 export default function App() {
   const [view, setView] = useState<ViewType>('home')
@@ -21,7 +22,7 @@ export default function App() {
       })
     }
 
-    // Keyboard shortcuts: 1=Home, 2=Add, 3=Stats, 4=Settings
+    // Keyboard shortcuts: 1=Home, 2=Add, 3=Stats, 4=Settings, 5=Info
     const handleKeyPress = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement;
       if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
@@ -31,6 +32,7 @@ export default function App() {
       if (e.key === '2') setView('add')
       if (e.key === '3') setView('stats')
       if (e.key === '4') setView('settings')
+      if (e.key === '5') setView('info')
     }
 
     window.addEventListener('keydown', handleKeyPress)
@@ -50,6 +52,7 @@ export default function App() {
         {view === 'stats' && <StatsScreen />}
         {view === 'recurring' && <RecurringTransactionsScreen />}
         {view === 'settings' && <SettingsScreen />}
+        {view === 'info' && <InfoScreen />}
       </div>
 
       {/* Debug panel (dev only) */}
@@ -83,6 +86,13 @@ export default function App() {
           title="Recurring"
         >
           📅 Recurring
+        </button>
+        <button
+          className={`nav-btn ${view === 'info' ? 'active' : ''}`}
+          onClick={() => setView('info')}
+          title="Info (Press 5)"
+        >
+          ℹ️ Info
         </button>
         <button
           className={`nav-btn ${view === 'settings' ? 'active' : ''}`}
