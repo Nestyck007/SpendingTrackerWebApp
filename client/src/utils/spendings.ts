@@ -191,18 +191,27 @@ export const CATEGORIES = [
 ]
 
 const CATEGORY_COLORS: Record<string, string> = {
-  'Food': '#FF6B6B',
-  'Transport': '#4ECDC4',
-  'Entertainment': '#45B7D1',
-  'Shopping': '#FFA07A',
-  'Health': '#98D8C8',
-  'Utilities': '#F7DC6F',
-  'Rent': '#BB8FCE',
-  'Other': '#A9A9A9'
+  'Housing': '#2a9d8f',
+  'Food': '#d9480f',
+  'Transport': '#d97706',
+  'Utilities & Subscriptions': '#b45309',
+  'Health': '#0284c7',
+  'Education': '#2f855a',
+  'Clothing': '#b7791f',
+  'Leisure': '#2b6cb0',
+  'Travel': '#0ea5a4',
+  'Tech': '#264653',
+  'Finance': '#115e59',
+  'Gifts & Special': '#be185d',
+  'Children': '#fb7185',
+  'Pets': '#15803d',
+  'Other': '#6b7280'
 }
 
 export function getCategoryColor(category: string): string {
-  return CATEGORY_COLORS[category] || '#A9A9A9'
+  // category may include subcategory like "Transport / Taxi" — use base category
+  const base = category.split('/')[0].trim()
+  return CATEGORY_COLORS[base] || '#adb5bd'
 }
 
 export function loadSpendings(): Spending[] {
@@ -238,3 +247,58 @@ export function deleteSpending(id: string): void {
 export function clearAllSpendings(): void {
   saveSpendings([])
 }
+
+// --- Recurring Transactions ---
+export interface RecurringTransaction {
+  id: string
+  description: string
+  amount: number
+  category: string
+  frequency: 'daily' | 'weekly' | 'biweekly' | 'monthly' | 'yearly'
+  startDate: string
+  endDate?: string
+  isActive: boolean
+}
+
+const RECURRING_KEY = '@spending_tracker/recurring'
+
+export function loadRecurringTransactions(): RecurringTransaction[] {
+  try {
+    const data = localStorage.getItem(RECURRING_KEY)
+    return data ? JSON.parse(data) : []
+  } catch {
+    return []
+  }
+}
+
+export function saveRecurringTransactions(list: RecurringTransaction[]): void {
+  localStorage.setItem(RECURRING_KEY, JSON.stringify(list))
+}
+
+export function addRecurringTransaction(tx: Omit<RecurringTransaction, 'id'>): RecurringTransaction {
+  const list = loadRecurringTransactions()
+  const newTx: RecurringTransaction = { ...tx, id: Date.now().toString() }
+  list.push(newTx)
+  saveRecurringTransactions(list)
+  return newTx
+}
+
+export function updateRecurringTransaction(id: string, updates: Partial<RecurringTransaction>): void {
+  const list = loadRecurringTransactions()
+  const idx = list.findIndex(r => r.id === id)
+  if (idx !== -1) {
+    list[idx] = { ...list[idx], ...updates }
+    saveRecurringTransactions(list)
+  }
+}
+
+export function deleteRecurringTransaction(id: string): void {
+  const list = loadRecurringTransactions()
+  saveRecurringTransactions(list.filter(r => r.id !== id))
+}
+
+// Backward-compatible aliases
+export const getAllSpendings = loadSpendings
+export const getBudgets = loadBudgets
+export const getRevenues = loadRevenues
+export const getRecurringTransactions = loadRecurringTransactions

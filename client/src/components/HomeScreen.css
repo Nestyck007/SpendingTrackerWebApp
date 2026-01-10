@@ -5,24 +5,25 @@
 .home-screen h1 {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #333;
+  color: #e6fbf5; /* light heading on dark background */
   font-weight: 700;
 }
 
 .home-screen h2 {
   font-size: 18px;
   margin: 20px 0 12px 0;
-  color: #555;
+  color: #cfeee6;
   font-weight: 600;
 }
 
 .total-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  /* prominent mint/teal total card */
+  background: linear-gradient(90deg, #2ebf92 0%, #2aa77c 100%);
+  color: #022d2a;
   text-align: center;
   padding: 24px;
   border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 12px 28px rgba(2, 24, 30, 0.45);
   margin-bottom: 24px;
 }
 
@@ -37,8 +38,9 @@
 
 .total-amount {
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
 
 .total-count {
@@ -74,6 +76,9 @@
   align-items: center;
   padding: 12px;
   position: relative;
+  background: linear-gradient(180deg, #f7fffb 0%, #eaf7ef 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(2,24,30,0.08);
 }
 
 .spending-header {
@@ -90,8 +95,8 @@
 
 .spending-description {
   font-size: 16px;
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #023235; /* deeper teal for readable titles on light cards */
   margin-bottom: 4px;
 }
 
@@ -104,22 +109,23 @@
 
 .spending-category {
   display: inline-block;
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: white;
-  font-weight: 500;
-  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  box-shadow: 0 2px 6px rgba(2,24,30,0.08);
 }
 
 .spending-date {
-  color: #999;
+  color: #6b8897;
 }
 
 .spending-amount {
   font-size: 16px;
-  font-weight: 700;
-  color: #667eea;
-  min-width: 80px;
+  font-weight: 800;
+  color: #026b5a; /* accent color for amounts */
+  min-width: 110px;
   text-align: right;
 }
 
@@ -131,6 +137,7 @@
   padding: 4px;
   margin-left: 8px;
   transition: transform 0.2s;
+  color: #6b8897;
 }
 
 .btn-delete:active {

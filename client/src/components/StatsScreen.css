@@ -5,14 +5,14 @@
 .stats-screen h1 {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #333;
+  color: #e6fbf5;
   font-weight: 700;
 }
 
 .stats-screen h2 {
   font-size: 18px;
   margin: 24px 0 12px 0;
-  color: #555;
+  color: #cfeee6;
   font-weight: 600;
 }
 
@@ -42,22 +42,35 @@
 .stat-card {
   text-align: center;
   padding: 16px;
+  background: linear-gradient(180deg, #f7fffb 0%, #eaf7ef 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(2,24,30,0.06);
 }
 
 .stat-label {
   font-size: 12px;
-  color: #999;
+  color: #6b8897;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 8px;
 }
 
 .stat-value {
   font-size: 20px;
-  font-weight: 700;
-  color: #667eea;
+  font-weight: 800;
+  color: #026b5a;
 }
+
+/* Budget status markers */
+.budget-ok { color: #0b6b4a; }
+.budget-warning { color: #b36b00; }
+.budget-over { color: #b00020; font-weight: 700; }
+
+/* Balance status */
+.balance-ok { color: #026b5a; }
+.balance-warning { color: #b36b00; }
+.balance-over { color: #b00020; }
 
 .category-breakdown {
   padding: 16px;
@@ -79,20 +92,20 @@
 }
 
 .category-name {
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #023235;
   font-size: 14px;
 }
 
 .category-amount {
-  font-weight: 700;
-  color: #667eea;
+  font-weight: 800;
+  color: #026b5a;
   font-size: 14px;
 }
 
 .category-bar-container {
   height: 8px;
-  background: #f0f0f0;
+  background: rgba(2,24,30,0.03);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 6px;
@@ -139,7 +152,7 @@
 
 .chart-bar {
   width: 30px;
-  background: linear-gradient(180deg, #667eea, #764ba2);
+  background: linear-gradient(180deg, #2ebf92, #2aa77c);
   border-radius: 4px 4px 0 0;
   transition: all 0.3s ease;
   cursor: pointer;

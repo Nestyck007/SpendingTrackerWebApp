@@ -58,7 +58,7 @@ export default function HomeScreen() {
                     <span className="spending-date">{formatDate(spending.date)}</span>
                   </div>
                 </div>
-                <div className="spending-amount">{formatRON(spending.amount)}</div>
+                <div className="spending-amount"><span className="amount-number">{formatRON(spending.amount)}</span></div>
               </div>
               <button
                 className="btn-delete"

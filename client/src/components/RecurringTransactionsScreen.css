@@ -1,0 +1,44 @@
+.recurring-screen {
+  padding: 20px;
+  max-width: 720px;
+  margin: 0 auto 80px auto;
+}
+.recurring-screen h1 {
+  margin-bottom: 12px;
+}
+.recurring-form {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 12px 0 20px 0;
+  color: #072235; /* ensure dark text on light form background */
+}
+.form-group { margin-bottom: 10px; }
+.form-group label { display:block; margin-bottom:6px; font-weight:600; }
+.form-group input, .form-group select { width:100%; padding:8px; border:1px solid #ddd; border-radius:6px }
+.recurring-list { margin-top: 16px; display:flex; flex-direction:column; gap:12px }
+.recurring-item { display:flex; justify-content:space-between; gap:12px; padding:12px; background:white; border-radius:8px; border:1px solid #eee; color: #072235 }
+.recurring-item.inactive { opacity:0.6 }
+.recurring-item .amount { font-weight:700; margin-bottom:8px; color: #072235 }
+.btn { padding:8px 10px; border-radius:6px; border:1px solid #ccc; background:#f0f0f0; cursor:pointer }
+.btn-primary { background:#667eea; color:white; border:none }
+.btn-danger { background:#f44336; color:white; border:none }
+
+/* Style only the Pause/Resume button inside recurring items so it contrasts on light cards
+   Keep the Delete (.btn-danger) appearance unchanged. */
+.recurring-item .btn:not(.btn-danger) {
+  background: linear-gradient(180deg, #f6f7f8 0%, #eef1f3 100%);
+  color: #072235 !important;
+  border: 1px solid rgba(2,24,30,0.06);
+  box-shadow: none;
+}
+
+/* When an item is dimmed (inactive), keep the buttons readable */
+.recurring-item.inactive .btn:not(.btn-danger) {
+  opacity: 0.95;
+}
+.empty-state { text-align:center; color:#6b8897; padding:24px }
+
+@media (max-width:480px) {
+  .recurring-item { flex-direction:column; align-items:flex-start }
+}

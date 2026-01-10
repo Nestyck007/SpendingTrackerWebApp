@@ -13,6 +13,8 @@ export default function SettingsScreen() {
     }
   }
 
+  
+
   return (
     <div className="settings-screen">
       <h1>⚙️ Settings</h1>
@@ -25,19 +27,20 @@ export default function SettingsScreen() {
         {showAbout && (
           <div className="about-content">
             <p><strong>Spending Tracker PWA</strong></p>
-            <p>Version 1.1.0</p>
+            <p>Version 1.2.0</p>
             <p>A modern progressive web app for tracking your spending, budgets, and revenues with full offline support.</p>
             <ul>
               <li>📱 Works on iPhone, Android, and desktop</li>
               <li>📵 Works offline with local storage</li>
-              <li>🏠 Installable on home screen</li>
-              <li>💾 Auto-saves all data</li>
+              <li>🏠 Installable on home screen (PWA)</li>
+              <li>💾 Auto-saves all data locally</li>
               <li>🇷🇴 Supports RON currency</li>
-              <li>📊 Real-time budget tracking per category</li>
+              <li>📊 Real-time budget tracking per category with visual progress</li>
               <li>💰 Add, edit, and delete budgets</li>
               <li>💵 Revenue tracking by type (Salary, Bonus, etc.)</li>
-              <li>⚡ Instant stats and balance calculation</li>
-              <li>🔒 All features work offline and sync instantly</li>
+              <li>⚡ Instant stats and balance calculation with color-coded alerts</li>
+              <li>🔁 Recurring transactions support (add/pause/delete)</li>
+              <li>🛠 Debug panel for populating test data and inspecting storage (dev only)</li>
             </ul>
             <p className="version-info">Built with React, Express, and TypeScript</p>
           </div>
@@ -53,12 +56,26 @@ export default function SettingsScreen() {
       </div>
 
       <div className="card settings-group">
-        <h2>PWA Features</h2>
-        <p className="feature-info">This app can be installed on your home screen for quick access.</p>
+        <h2>PWA & Installation</h2>
+        <p className="feature-info">Install this app to your device to open it like a native app and enable offline usage.</p>
         <div className="install-hint">
-          <strong>On iPhone:</strong> Tap Share → Add to Home Screen
-          <br/>
-          <strong>On Android:</strong> Tap Menu → Install app
+          <strong>On iPhone (Safari)</strong>
+          <ol>
+            <li>Open this app URL in Safari on your iPhone.</li>
+            <li>Tap the <em>Share</em> icon (square with an up-arrow) at the bottom.</li>
+            <li>Scroll the share sheet and tap <em>Add to Home Screen</em>.</li>
+            <li>Optionally edit the name, then tap <em>Add</em>. The app will appear on your home screen.</li>
+          </ol>
+          <strong>Notes:</strong> After installing, open via the home screen for the standalone PWA window. If the Add to Home Screen option is missing, make sure you opened the app in Safari (not in an embedded web view) and that the app was served over HTTPS or localhost.
+
+          <hr/>
+          <strong>On Android (Chrome)</strong>
+          <ol>
+            <li>Open this app URL in Chrome on your Android device.</li>
+            <li>Tap the three-dot menu (top-right).</li>
+            <li>Tap <em>Install app</em> or <em>Add to Home screen</em>, then confirm.</li>
+          </ol>
+          <strong>Other browsers</strong>: Firefox may show "Add to Home screen" in the menu; Edge and Samsung Browser provide similar install prompts.
         </div>
       </div>
 
@@ -78,8 +95,8 @@ export default function SettingsScreen() {
       </div>
 
       <div className="app-version">
-        <p>© 2024 Spending Tracker</p>
-        <p className="version-text">Version 1.0.0 • PWA Ready</p>
+        <p>© 2025 Spending Tracker</p>
+        <p className="version-text">Version 1.2.0 • PWA Ready</p>
       </div>
     </div>
   )

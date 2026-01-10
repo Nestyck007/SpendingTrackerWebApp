@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import HomeScreen from './components/HomeScreen'
 import AddSpending from './components/AddSpending'
 import StatsScreen from './components/StatsScreen'
 import SettingsScreen from './components/SettingsScreen'
+import RecurringTransactionsScreen from './components/RecurringTransactionsScreen'
+import DebugPanel from './components/DebugPanel'
 
-type ViewType = 'home' | 'add' | 'stats' | 'settings'
+type ViewType = 'home' | 'add' | 'stats' | 'recurring' | 'settings'
 
 export default function App() {
   const [view, setView] = useState<ViewType>('home')
@@ -18,6 +20,21 @@ export default function App() {
         console.log('Service worker registration failed (may not be available in development)')
       })
     }
+
+    // Keyboard shortcuts: 1=Home, 2=Add, 3=Stats, 4=Settings
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+      if (e.key === '1') setView('home')
+      if (e.key === '2') setView('add')
+      if (e.key === '3') setView('stats')
+      if (e.key === '4') setView('settings')
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
   }, [])
 
   const handleSpendingAdded = () => {
@@ -31,8 +48,12 @@ export default function App() {
         {view === 'home' && <HomeScreen />}
         {view === 'add' && <AddSpending onAdded={handleSpendingAdded} />}
         {view === 'stats' && <StatsScreen />}
+        {view === 'recurring' && <RecurringTransactionsScreen />}
         {view === 'settings' && <SettingsScreen />}
       </div>
+
+      {/* Debug panel (dev only) */}
+      {import.meta.env.DEV && <DebugPanel />}
 
       <nav className="app-nav">
         <button
@@ -55,6 +76,13 @@ export default function App() {
           title="Stats (Press 3)"
         >
           📊 Stats
+        </button>
+        <button
+          className={`nav-btn ${view === 'recurring' ? 'active' : ''}`}
+          onClick={() => setView('recurring')}
+          title="Recurring"
+        >
+          📅 Recurring
         </button>
         <button
           className={`nav-btn ${view === 'settings' ? 'active' : ''}`}

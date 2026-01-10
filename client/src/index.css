@@ -8,8 +8,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(34, 139, 34, 0.1) 100%);
+  /* Deep navy -> teal gradient for a trustworthy finance app feel */
+  background: linear-gradient(180deg, #021426 0%, #063b55 65%);
   min-height: 100vh;
+  color: #e6fbf5; /* soft light text for contrast */
 }
 
 html, body, #root {
@@ -26,7 +28,53 @@ input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border-radius: 0;
+  border-radius: 6px;
+}
+
+/* Inputs, selects and textareas: consistent spacing, readable text, and strong focus state */
+input, select, textarea {
+  padding: 10px 12px;
+  border: 1px solid rgba(2,24,30,0.08);
+  background: #ffffff;
+  color: inherit;
+  font-size: 15px;
+  border-radius: 8px;
+  transition: box-shadow 0.18s ease, transform 0.08s ease, border-color 0.18s ease;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(2,24,30,0.45);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 6px 18px rgba(46, 191, 146, 0.12), 0 0 0 3px rgba(46, 191, 146, 0.08);
+  border-color: rgba(46, 191, 146, 0.9);
+  transform: translateY(-1px);
+}
+
+/* Numeric inputs: larger, monospaced numbers and hide default spin buttons for cleaner UI */
+input[type="number"] {
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Helvetica Neue', monospace;
+}
+
+/* WebKit */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Utility: emphasize amounts when shown */
+.amount-number {
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;
+  color: inherit;
 }
 
 button {
@@ -44,11 +92,18 @@ button, input[type="button"], input[type="submit"] {
 
 /* Utility classes */
 .card {
-  background: rgba(255, 255, 255, 0.95);
+  /* Minty light surface for cards to convey money/finance feel */
+  background: linear-gradient(180deg, #f7fffb 0%, #eaf7ef 100%);
+  color: #023235; /* deep teal text */
   border-radius: 12px;
   padding: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 24px rgba(2, 24, 30, 0.45);
   margin-bottom: 12px;
+}
+
+/* Ensure all text inside card surfaces remains high-contrast and readable */
+.card h1, .card h2, .card h3, .card p, .card li, .card span, .card a {
+  color: #023235 !important;
 }
 
 .btn {
@@ -67,11 +122,11 @@ button, input[type="button"], input[type="submit"] {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2ebf92 0%, #2aa77c 100%);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 20px rgba(46, 191, 146, 0.28);
 }
 
 .btn-danger {
@@ -79,5 +134,5 @@ button, input[type="button"], input[type="submit"] {
 }
 
 .btn-success {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: linear-gradient(135deg, #6fd3c6 0%, #37b89f 100%);
 }

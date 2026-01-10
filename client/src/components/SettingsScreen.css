@@ -5,7 +5,7 @@
 .settings-screen h1 {
   font-size: 28px;
   margin-bottom: 20px;
-  color: #333;
+  color: #e6fbf5;
   font-weight: 700;
 }
 
@@ -17,8 +17,8 @@
 .settings-group h2 {
   font-size: 16px;
   margin: 0 0 12px 0;
-  color: #555;
-  font-weight: 600;
+  color: #cfeee6;
+  font-weight: 700;
 }
 
 .settings-group p {
@@ -60,9 +60,9 @@
 .about-content {
   margin-top: 12px;
   padding: 12px;
-  background: #f5f5f5;
+  background: linear-gradient(180deg, #f7fffb 0%, #eaf7ef 100%);
   border-radius: 8px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #2ebf92;
 }
 
 .about-content p {
@@ -105,12 +105,12 @@
 }
 
 .install-hint {
-  background: #f0f8ff;
-  border: 1px solid #b3d9ff;
+  background: rgba(2,24,30,0.02);
+  border: 1px solid rgba(2,24,30,0.03);
   border-radius: 8px;
   padding: 12px;
   font-size: 13px;
-  color: #0066cc;
+  color: #023235;
   line-height: 1.6;
   font-family: monospace;
 }
@@ -124,10 +124,33 @@
 
 .category-list li {
   padding: 8px 12px;
-  background: #f5f5f5;
-  border-radius: 6px;
+  background: linear-gradient(180deg, #f7fffb 0%, #eaf7ef 100%);
+  border-radius: 10px;
   font-size: 13px;
+  color: #023235;
 }
+
+/* Changelog editor and list */
+.changelog-editor input,
+.changelog-editor textarea {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.changelog-editor textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.changelog-list { display:flex; flex-direction:column; gap:10px; margin-top:12px }
+.changelog-entry { padding:10px; background: rgba(2,24,30,0.02); border-radius:8px }
+.changelog-meta { display:flex; justify-content:space-between; align-items:center; gap:12px }
+.changelog-date { font-size:12px; color:#6b8897 }
+.changelog-body { margin-top:8px; color:#023235 }
+
+.changelog-entry .btn { padding:6px 10px; font-size:13px }
+
+hr { border:none; height:1px; background: rgba(2,24,30,0.04); margin:12px 0 }
 
 .app-version {
   text-align: center;

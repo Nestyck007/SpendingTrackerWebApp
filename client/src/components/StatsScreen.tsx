@@ -73,6 +73,8 @@ export default function StatsScreen() {
 
   // Get revenue for current month
   const currentRevenue = revenues.find(r => r.month === currentMonth && r.year === currentYear)
+  const totalRevenue = revenues.filter(r => r.month === currentMonth && r.year === currentYear).reduce((sum, r) => sum + r.amount, 0)
+  const balanceValue = totalRevenue - total
 
   // Helper: get budget for category (exact match)
   function getBudgetForCategory(cat: string): Budget | undefined {
@@ -135,11 +137,19 @@ export default function StatsScreen() {
       <div className="card" style={{marginBottom: 16}}>
         <h2 style={{margin: '0 0 8px 0'}}>Budgets for {currentYear}-{String(currentMonth).padStart(2, '0')}</h2>
         <ul style={{margin: 0, paddingLeft: 20}}>
-          {budgets.filter(b => b.month === currentMonth && b.year === currentYear).map(b => (
-            <li key={b.id}>
-              <span style={{fontWeight: 600}}>{b.category}</span>: {b.amount} {b.currency}
-            </li>
-          ))}
+          {budgets.filter(b => b.month === currentMonth && b.year === currentYear).map(b => {
+            const spent = spendings.filter(s => s.category === b.category).reduce((sum, s) => sum + s.amount, 0)
+            const pct = b.amount > 0 ? (spent / b.amount) * 100 : 0
+            let statusClass = 'budget-ok'
+            if (pct >= 100) statusClass = 'budget-over'
+            else if (pct >= 80) statusClass = 'budget-warning'
+            return (
+              <li key={b.id} className={statusClass}>
+                <span style={{fontWeight: 600}}>{b.category}</span>: <span className="amount-number">{formatRON(b.amount)}</span>
+                <small style={{marginLeft:8, color:'#6b8897'}}>{spent > 0 ? `(${pct.toFixed(0)}% spent)` : '(0% spent)'}</small>
+              </li>
+            )
+          })}
           {budgets.filter(b => b.month === currentMonth && b.year === currentYear).length === 0 && (
             <li style={{color: '#bfbfbf'}}>No budgets found for this month</li>
           )}
@@ -167,16 +177,16 @@ export default function StatsScreen() {
         <div className="card stat-card">
           <div className="stat-label">Total Revenue</div>
           <div className="stat-value">
-            {revenues.filter(r => r.month === currentMonth && r.year === currentYear).length > 0
-              ? `${formatRON(revenues.filter(r => r.month === currentMonth && r.year === currentYear).reduce((sum, r) => sum + r.amount, 0))} ${revenues[0].currency}`
-              : '-'}
-          </div>
+              {revenues.filter(r => r.month === currentMonth && r.year === currentYear).length > 0
+                ? formatRON(revenues.filter(r => r.month === currentMonth && r.year === currentYear).reduce((sum, r) => sum + r.amount, 0))
+                : '-'}
+            </div>
         </div>
         <div className="card stat-card">
           <div className="stat-label">Balance</div>
-          <div className="stat-value">
+            <div className={`stat-value ${balanceValue <= 0 ? 'balance-over' : (totalRevenue>0 && balanceValue/totalRevenue < 0.1 ? 'balance-warning' : 'balance-ok')}`}>
             {revenues.filter(r => r.month === currentMonth && r.year === currentYear).length > 0
-              ? `${formatRON(revenues.filter(r => r.month === currentMonth && r.year === currentYear).reduce((sum, r) => sum + r.amount, 0) - total)} ${revenues[0].currency}`
+              ? formatRON(balanceValue)
               : '-'}
           </div>
         </div>
@@ -190,7 +200,7 @@ export default function StatsScreen() {
             <div key={r.id} className="category-item">
               <div className="category-header">
                 <div className="category-name">{r.type}</div>
-                <div className="category-amount">{formatRON(r.amount)} {r.currency}</div>
+                <div className="category-amount">{formatRON(r.amount)}</div>
                 <div className="category-stats">{r.description}</div>
               </div>
             </div>
@@ -218,7 +228,7 @@ export default function StatsScreen() {
                 <div className="category-amount">{formatRON(amount)}</div>
                 {budget && (
                   <div className="category-budget">
-                    Budget: {formatRON(budget.amount)} {budget.currency}
+                    Budget: {formatRON(budget.amount)}
                   </div>
                 )}
               </div>
